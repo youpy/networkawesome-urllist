@@ -14,7 +14,7 @@ end
 get '/' do
   url = params[:url]
 
-  content = Zlib::GzipReader.new(open(url, 'Accept-Encoding' => 'gzip, deflare')).read
+  content = Zlib::GzipReader.new(open(url, 'Accept-Encoding' => 'gzip, deflate')).read
   kshows  = JSON.parse(content.match(/var kShows = ([^\n]+);/)[1]);
   @shows  = kshows['shows'].inject([]) do |result, item|
     result + item['clips'].find_all do |clip|
