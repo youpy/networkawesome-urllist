@@ -19,7 +19,6 @@ get '/' do
     result + item['clips'].find_all do |clip|
       clip['type'] == 'Regular'
     end.map do |clip|
-      p clip
       Show.new(clip['name'], clip['id'])
     end
   end
