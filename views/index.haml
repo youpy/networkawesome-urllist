@@ -1,0 +1,8 @@
+%html
+  %head
+    %title Network Awesome URLList
+  %body
+    %h1 Network Awesome URLList
+    - @shows.each do |show|
+      %h2 #{show.name}
+      = show2iframe(show)
