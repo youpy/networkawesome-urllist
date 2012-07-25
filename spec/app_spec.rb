@@ -18,7 +18,7 @@ describe 'App' do
     it 'should respond to /' do
       get '/', :url => @url
 
-      last_response.body.should match(/<iframe width="459" height="344"/)
+      last_response.body.should match(/<img width="459" height="344"/)
     end
   end
 end
