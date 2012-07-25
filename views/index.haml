@@ -4,5 +4,6 @@
   %body
     %h1 Network Awesome URLList
     - @shows.each do |show|
-      %h2 #{show.name}
+      %h2
+        %a{:href => '#' + show.id, :name => show.id} #{show.name}
       = show2iframe(show)
