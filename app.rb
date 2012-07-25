@@ -3,10 +3,11 @@ require 'json'
 require 'zlib'
 
 set :root, File.dirname(__FILE__)
+set :public_folder, 'public'
 
 helpers do
   def show2iframe(show)
-    '<iframe width="459" height="344" src="http://www.youtube.com/embed/%s" frameborder="0" allowfullscreen></iframe>' % show.id
+    '<img width="459" height="344" src="http://i3.ytimg.com/vi/%s/hqdefault.jpg" data-id="%s" />' % [show.id, show.id]
   end
 end
 
