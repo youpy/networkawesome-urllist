@@ -5,6 +5,10 @@
     %link{:href => 'css/app.css', :rel => "stylesheet", :type => "text/css"}
   %body
     %h1 Network Awesome URLList
+    %p
+      %a{:href => @url } original
+    %p
+      %a{:href => 'http://hitode909.appspot.com/paralleltube/#' + @ids.join('%20') } paralleltube
     - @shows.each do |show|
       %h2
         %a{:href => '#' + show.id, :name => show.id} #{show.name}

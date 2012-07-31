@@ -16,6 +16,7 @@ get '/' do
 
   content = Zlib::GzipReader.new(open(url, 'Accept-Encoding' => 'gzip, deflate')).read
   kshows  = JSON.parse(content.match(/var kShows = ([^\n]+);/)[1]);
+  @url    = url
   @shows  = kshows['shows'].inject([]) do |result, item|
     result + item['clips'].find_all do |clip|
       clip['type'] == 'Regular'
@@ -23,6 +24,7 @@ get '/' do
       Show.new(clip['name'], clip['id'])
     end
   end
+  @ids    = @shows.map {|s| s.id }
 
   haml :index
 end
