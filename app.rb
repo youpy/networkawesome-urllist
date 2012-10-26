@@ -16,13 +16,12 @@ get '/' do
 
   content = Zlib::GzipReader.new(open(url, 'Accept-Encoding' => 'gzip, deflate')).read
   kshows  = JSON.parse(content.match(/var kShows = ([^\n]+);/)[1]);
+  index   = content.match(/gCurrShowIdx = (\d+)/)[1];
   @url    = url
-  @shows  = kshows['shows'].inject([]) do |result, item|
-    result + item['clips'].find_all do |clip|
-      clip['type'] == 'Regular'
-    end.map do |clip|
-      Show.new(clip['name'], clip['id'])
-    end
+  @shows  = kshows['shows'][index.to_i]['clips'].find_all do |clip|
+    clip['type'] == 'Regular'
+  end.map do |clip|
+    Show.new(clip['name'], clip['id'])
   end
   @ids    = @shows.map {|s| s.id }
 

@@ -1,5 +1,7 @@
 require File.dirname(__FILE__) + '/spec_helper'
 
+require 'nokogiri'
+
 describe 'App' do
   include Rack::Test::Methods
 
@@ -18,7 +20,8 @@ describe 'App' do
     it 'should respond to /' do
       get '/', :url => @url
 
-      last_response.body.should match(/<img width="459" height="344"/)
+      doc = Nokogiri::HTML(last_response.body)
+      doc.xpath('//img').should have(9).items
     end
   end
 end
