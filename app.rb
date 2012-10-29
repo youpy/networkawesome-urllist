@@ -20,7 +20,7 @@ get '/' do
   kshows  = JSON.parse(content.match(/var kShows = ([^\n]+);/)[1])
   index   = content.match(/gCurrShowIdx = (\d+)/)[1]
   @title  = doc.xpath('//title')[0].text
-  @desc   = doc.xpath('//div[@class="showData "]//div[@class="description"]')[0].text
+  @desc   = doc.xpath('//div[@class="showData "]//div[@class="description"]')[0].inner_html
   @url    = url
   @shows  = kshows['shows'][index.to_i]['clips'].find_all do |clip|
     clip['type'] == 'Regular'
