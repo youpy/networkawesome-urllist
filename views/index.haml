@@ -5,12 +5,12 @@
     %link{:href => 'css/app.css', :rel => "stylesheet", :type => "text/css"}
   %body
     %h1 #{@title}
-    %div{:class => 'description'} #{@desc}
     %ul
       %li
         %a{:href => @url } original
       %li
         %a{:href => 'http://hitode909.appspot.com/paralleltube/#' + @ids.join('%20') } paralleltube
+    %div{:class => 'description'} #{@desc}
     - @shows.each do |show|
       %h2
         %a{:href => '#' + show.id, :name => show.id} #{show.name}
