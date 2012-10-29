@@ -17,6 +17,7 @@ get '/' do
   content = Zlib::GzipReader.new(open(url, 'Accept-Encoding' => 'gzip, deflate')).read
   kshows  = JSON.parse(content.match(/var kShows = ([^\n]+);/)[1]);
   index   = content.match(/gCurrShowIdx = (\d+)/)[1];
+  @title  = content.match(/<title>(.+)<\/title>/)[1];
   @url    = url
   @shows  = kshows['shows'][index.to_i]['clips'].find_all do |clip|
     clip['type'] == 'Regular'

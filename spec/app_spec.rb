@@ -22,6 +22,7 @@ describe 'App' do
 
       doc = Nokogiri::HTML(last_response.body)
       doc.xpath('//img').should have(9).items
+      doc.xpath('//title')[0].text.should eql('Live Music Show - Italo Disco | Network Awesome URLList')
     end
   end
 end
