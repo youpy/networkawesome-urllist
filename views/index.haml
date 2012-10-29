@@ -6,10 +6,11 @@
   %body
     %h1 #{@title}
     %div{:class => 'description'} #{@desc}
-    %p
-      %a{:href => @url } original
-    %p
-      %a{:href => 'http://hitode909.appspot.com/paralleltube/#' + @ids.join('%20') } paralleltube
+    %ul
+      %li
+        %a{:href => @url } original
+      %li
+        %a{:href => 'http://hitode909.appspot.com/paralleltube/#' + @ids.join('%20') } paralleltube
     - @shows.each do |show|
       %h2
         %a{:href => '#' + show.id, :name => show.id} #{show.name}
